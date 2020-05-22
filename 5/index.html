@@ -1,0 +1,116 @@
+<html lang="en">
+  <head>
+    
+  </head>
+  <body>
+  <script type="text/javascript">  	
+ var m = [
+			{
+			    text: "Животные",
+			    childs: [
+			      {
+			        text: "Млекопитающие",
+			        childs: 
+			        [
+			        	"Корова",
+			        	"Ослы",
+			        	"Собаки",
+			        	"Тигры"
+			        ]
+			      },
+			      {
+			      	text: "Другие",
+			        childs: 
+			        [
+			        	"Змеи",
+			        	"Птицы",
+			        	"Ящерицы"
+			        ]
+			      }
+			    ]
+			  },
+
+			{
+			  	text:"Рыбы",
+			    childs:[
+			      {
+			  		text:"Аквариумные",
+			  		childs:
+			  		[
+				 	 	"Гуппи",
+					  	"Скалярии"
+			  		]
+				  },
+				  {
+				  	text:"Морские",
+			  		childs:
+			  		[
+					  	"Морская форель"
+			  		]
+				}
+				]	
+			}
+			];
+			 /*
+	ul = document.createElement("ul");
+	document.body.append(ul);
+	for(i = 0; i< m.length; i++){
+		li = document.createElement("li");
+		li.innerHTML = m[i].text;
+		ul.append(li);
+		for(p = 0; p< m[i].childs.length; p++){		
+			childUl = document.createElement("ul");
+			ul.append(childUl);
+			сhildli = document.createElement("li");
+			сhildli.innerHTML = m[i].childs[p].text;
+			childUl.append(сhildli);
+
+			childchildul = document.createElement("ul");
+			сhildli.append(childchildul);
+
+			for(j = 0; j< m[i].childs[p].childs.length; j++){
+				сhildсhildli = document.createElement("li");
+				сhildсhildli.innerHTML = m[i].childs[p].childs[j];
+				childchildul.append(сhildсhildli);				
+			}
+		}
+		
+	}*/
+  </script>
+  <div id="table"></div>
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+<script type="text/javascript">
+    $("#table").append("<ul></ul>");
+ 	$("ul").attr("id","first_ul")
+	$.each(m, function(i)
+	{			
+		var first_li = $("<li>"+m[i].text+"</li>");
+		first_li.appendTo("#first_ul");	
+
+		var second_ul = $("<ul></ul>");
+		second_ul.appendTo(first_li);	
+		console.log(m[i].text);
+		$.each(m[i].childs, function(j)
+		{							
+			console.log(m[i].childs[j].text);
+			var second_li = $('<li>'+m[i].childs[j].text+"</li>");
+			second_li.appendTo(second_ul);
+
+			var third_ul = $("<ul></ul>");
+			third_ul.appendTo(second_li);
+
+			$.each(m[i].childs[j].childs, function(p)
+			{					
+				console.log(m[i].childs[j].childs[p]);		
+				var second_li = $('<li>'+m[i].childs[j].childs[p]+"</li>");	
+				second_li.appendTo(third_ul);	
+			})
+		})
+
+	})
+	
+</script>
+</html>
