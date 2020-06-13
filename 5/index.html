@@ -51,7 +51,7 @@
 				]	
 			}
 			];
-			 /*
+			 
 	ul = document.createElement("ul");
 	document.body.append(ul);
 	for(i = 0; i< m.length; i++){
@@ -75,7 +75,7 @@
 			}
 		}
 		
-	}*/
+	}
   </script>
   <div id="table"></div>
 </body>
@@ -85,26 +85,35 @@
 <script type="text/javascript">
     $("#table").append("<ul></ul>");
  	$("ul").attr("id","first_ul")
+ 	
 	$.each(m, function(i)
 	{			
 		var first_li = $("<li>"+m[i].text+"</li>");
 		first_li.appendTo("#first_ul");	
-
+		first_li.click(function() {
+  			return false;
+		})
+		first_li.on('click', function () {
+			$(this.firstElementChild).slideToggle(600);
+			return false
+		})
 		var second_ul = $("<ul></ul>");
-		second_ul.appendTo(first_li);	
-		console.log(m[i].text);
+		second_ul.appendTo(first_li);			
 		$.each(m[i].childs, function(j)
 		{							
-			console.log(m[i].childs[j].text);
+			
 			var second_li = $('<li>'+m[i].childs[j].text+"</li>");
 			second_li.appendTo(second_ul);
-
+			second_li.on('click', function () {
+			$(this.firstElementChild).slideToggle(600);
+			return false
+		})
 			var third_ul = $("<ul></ul>");
 			third_ul.appendTo(second_li);
 
 			$.each(m[i].childs[j].childs, function(p)
 			{					
-				console.log(m[i].childs[j].childs[p]);		
+					
 				var second_li = $('<li>'+m[i].childs[j].childs[p]+"</li>");	
 				second_li.appendTo(third_ul);	
 			})
@@ -112,5 +121,28 @@
 
 	})
 	
+	
+	function CallChild(a){
+		$.each(a, function(i)
+			{		
+					if(a[i].text != null)
+					{
+						console.log(a[i].text);	
+					}
+										
+				if(a[i].childs != null)
+				{
+					CallChild(a[i].childs);
+				}
+				else
+				{
+					if(a[i] != null)
+					{
+						console.log(a[i]);	
+					}
+						
+				}	
+		})	
+	}
 </script>
 </html>
